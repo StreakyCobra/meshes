@@ -1,0 +1,30 @@
+# --------------------------------------------------------------------------- #
+# Variables                                                                   #
+# --------------------------------------------------------------------------- #
+
+# The list of openscad files
+SCAD_FILES := $(wildcard *.scad)
+
+# The list of STL files generated from the list of openscad files
+STL_FILES := $(SCAD_FILES:%.scad=%.stl)
+
+# The current directory
+CURRENT_DIR = $(shell pwd)
+
+# --------------------------------------------------------------------------- #
+# Targets                                                                     #
+# --------------------------------------------------------------------------- #
+
+.PHONY: build clean edit
+
+build: $(STL_FILES)
+
+clean:
+	$(foreach F,$(STL_FILES),rm -rf $F;)
+
+edit:
+	$${EDITOR} $(SCAD_FILES) &
+	openscad $(SCAD_FILES) &
+
+%.stl: %.scad
+	openscad -o $@ $<
