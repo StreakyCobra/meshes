@@ -1,16 +1,18 @@
+// Dimensions has been corrected for my printer!!!
+
 // Hook
 width = 70;
-height = 28.5;
+height = 29;
 depth = 33;
 size = 5;
 
 // Holes
-spacing = 50;
-position = 23;
+spacing = 51;
+position = 24;
 hole = 4;
 
 // Headphones
-head_width = 35;
+head_width = 36;
 
 $fn = 100;
 
@@ -42,14 +44,14 @@ module top() {
 module support() {
      intersection() {
           translate([-width/2, -head_width - size, -size]) cube([width, head_width, height + 2 * size]);
-          translate([0, 0, -60]) rotate([90, 0, 0]) cylinder(head_width, 70, 70);
+          translate([0, -size, -60]) rotate([90, 0, 0]) cylinder(head_width, 70, 70);
      }
 }
 
 module head_front() {
      intersection() {
-          translate([-width/2, -head_width - size, -size]) cube([width, size, height + 2 * size]);
-          translate([0, -head_width, -60]) rotate([90, 0, 0]) cylinder(size, 90, 90);
+          translate([-width/2, -head_width - 2 * size, -size]) cube([width, size, height + 2 * size]);
+          translate([0, -head_width-size, -60]) rotate([90, 0, 0]) cylinder(size, 90, 90);
      }
 }
 
